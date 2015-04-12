@@ -31,4 +31,8 @@
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         WebBrowser1.Navigate("http://does not exits yet?")
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        ' Trying to test ways to simulate the console in the window
+    End Sub
 End Class
