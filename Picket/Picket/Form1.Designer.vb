@@ -39,11 +39,14 @@ Partial Class Form1
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.ServerTabPage = New System.Windows.Forms.TabPage()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.IntegratedConsole1 = New Picket.IntegratedConsole()
+        Me.StatusLabel = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.StatusLabel = New System.Windows.Forms.Label()
-        Me.IntegratedConsole1 = New Picket.IntegratedConsole()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.MainTabController.SuspendLayout()
         Me.WebBrowserTabPage.SuspendLayout()
@@ -182,10 +185,8 @@ Partial Class Form1
         '
         'ServerTabPage
         '
-        Me.ServerTabPage.Controls.Add(Me.StatusLabel)
-        Me.ServerTabPage.Controls.Add(Me.Label1)
-        Me.ServerTabPage.Controls.Add(Me.IntegratedConsole1)
         Me.ServerTabPage.Controls.Add(Me.TextBox1)
+        Me.ServerTabPage.Controls.Add(Me.IntegratedConsole1)
         Me.ServerTabPage.Location = New System.Drawing.Point(4, 22)
         Me.ServerTabPage.Name = "ServerTabPage"
         Me.ServerTabPage.Padding = New System.Windows.Forms.Padding(3)
@@ -201,12 +202,41 @@ Partial Class Form1
         Me.TextBox1.Size = New System.Drawing.Size(569, 20)
         Me.TextBox1.TabIndex = 1
         '
+        'IntegratedConsole1
+        '
+        Me.IntegratedConsole1.BackColor = System.Drawing.Color.DimGray
+        Me.IntegratedConsole1.Location = New System.Drawing.Point(8, 8)
+        Me.IntegratedConsole1.Name = "IntegratedConsole1"
+        Me.IntegratedConsole1.Size = New System.Drawing.Size(647, 329)
+        Me.IntegratedConsole1.TabIndex = 3
+        '
+        'StatusLabel
+        '
+        Me.StatusLabel.AutoSize = True
+        Me.StatusLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.StatusLabel.ForeColor = System.Drawing.Color.Red
+        Me.StatusLabel.Location = New System.Drawing.Point(590, 422)
+        Me.StatusLabel.Name = "StatusLabel"
+        Me.StatusLabel.Size = New System.Drawing.Size(67, 16)
+        Me.StatusLabel.TabIndex = 5
+        Me.StatusLabel.Text = "Stopped"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(542, 422)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(48, 16)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Status:"
+        '
         'Button1
         '
         Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(331, 411)
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(364, 411)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(172, 68)
         Me.Button1.TabIndex = 2
@@ -217,45 +247,49 @@ Partial Class Form1
         '
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"ping localhost /n 5"})
-        Me.ComboBox1.Location = New System.Drawing.Point(4, 411)
+        Me.ComboBox1.Location = New System.Drawing.Point(628, 449)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(149, 21)
         Me.ComboBox1.TabIndex = 3
         '
-        'Label1
+        'Button2
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(661, 8)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(48, 16)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Status:"
+        Me.Button2.Location = New System.Drawing.Point(12, 411)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(170, 68)
+        Me.Button2.TabIndex = 4
+        Me.Button2.Text = "Install"
+        Me.Button2.UseVisualStyleBackColor = True
         '
-        'StatusLabel
+        'Button3
         '
-        Me.StatusLabel.AutoSize = True
-        Me.StatusLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.StatusLabel.ForeColor = System.Drawing.Color.Red
-        Me.StatusLabel.Location = New System.Drawing.Point(715, 8)
-        Me.StatusLabel.Name = "StatusLabel"
-        Me.StatusLabel.Size = New System.Drawing.Size(67, 16)
-        Me.StatusLabel.TabIndex = 5
-        Me.StatusLabel.Text = "Stopped"
+        Me.Button3.Location = New System.Drawing.Point(188, 411)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(170, 68)
+        Me.Button3.TabIndex = 5
+        Me.Button3.Text = "Update"
+        Me.Button3.UseVisualStyleBackColor = True
         '
-        'IntegratedConsole1
+        'Label2
         '
-        Me.IntegratedConsole1.BackColor = System.Drawing.Color.DimGray
-        Me.IntegratedConsole1.Location = New System.Drawing.Point(8, 8)
-        Me.IntegratedConsole1.Name = "IntegratedConsole1"
-        Me.IntegratedConsole1.Size = New System.Drawing.Size(647, 329)
-        Me.IntegratedConsole1.TabIndex = 3
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(542, 449)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(80, 16)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "Server type:"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(834, 491)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.StatusLabel)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.MainTabController)
         Me.Controls.Add(Me.Button1)
@@ -297,5 +331,8 @@ Partial Class Form1
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents StatusLabel As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 
 End Class
