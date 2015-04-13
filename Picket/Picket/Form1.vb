@@ -1,5 +1,4 @@
 ﻿Public Class Form1
-
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
     End Sub
@@ -29,10 +28,27 @@
     End Sub
 
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
-        WebBrowser1.Navigate("http://does not exits yet?")
+        WebBrowser1.Navigate("https://github.com/jaclegonetwork/Picket-1.0.0")
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ' Trying to test ways to simulate the console in the window
+        MainTabController.SelectTab(ServerTabPage)
+        IntegratedConsole1.startConsole(ComboBox1.SelectedItem)
+    End Sub
+
+    Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        ComboBox1.SelectedIndex = 0
+    End Sub
+
+    Private Sub IntegratedConsole1_ServerStart(sender As System.Object, e As Picket.ServerEventArgs) Handles IntegratedConsole1.ServerStart
+        StatusLabel.Text = "Running"
+        StatusLabel.ForeColor = Color.Green
+        ServerTabPage.Text = "Server (Running)"
+    End Sub
+
+    Private Sub IntegratedConsole1_ServerStop(sender As System.Object, e As Picket.ServerEventArgs) Handles IntegratedConsole1.ServerStop
+        StatusLabel.Text = "Stopped"
+        StatusLabel.ForeColor = Color.Red
+        ServerTabPage.Text = "Server"
     End Sub
 End Class

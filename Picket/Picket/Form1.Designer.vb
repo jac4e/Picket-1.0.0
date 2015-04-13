@@ -29,23 +29,26 @@ Partial Class Form1
         Me.CheckForUpdateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GithubToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.MainTabController = New System.Windows.Forms.TabControl()
+        Me.WebBrowserTabPage = New System.Windows.Forms.TabPage()
         Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ServerTabPage = New System.Windows.Forms.TabPage()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.RichConsole1 = New Picket.RichConsole()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.StatusLabel = New System.Windows.Forms.Label()
+        Me.IntegratedConsole1 = New Picket.IntegratedConsole()
         Me.MenuStrip1.SuspendLayout()
-        Me.TabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
+        Me.MainTabController.SuspendLayout()
+        Me.WebBrowserTabPage.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
+        Me.ServerTabPage.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -89,30 +92,30 @@ Partial Class Form1
         Me.GithubToolStripMenuItem.Size = New System.Drawing.Size(110, 22)
         Me.GithubToolStripMenuItem.Text = "Github"
         '
-        'TabControl1
+        'MainTabController
         '
-        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.MainTabController.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(0, 27)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(840, 470)
-        Me.TabControl1.TabIndex = 1
+        Me.MainTabController.Controls.Add(Me.WebBrowserTabPage)
+        Me.MainTabController.Controls.Add(Me.ServerTabPage)
+        Me.MainTabController.Location = New System.Drawing.Point(0, 27)
+        Me.MainTabController.Name = "MainTabController"
+        Me.MainTabController.SelectedIndex = 0
+        Me.MainTabController.Size = New System.Drawing.Size(840, 369)
+        Me.MainTabController.TabIndex = 1
         '
-        'TabPage1
+        'WebBrowserTabPage
         '
-        Me.TabPage1.Controls.Add(Me.WebBrowser1)
-        Me.TabPage1.Controls.Add(Me.ToolStrip1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(832, 444)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Web Browser"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.WebBrowserTabPage.Controls.Add(Me.WebBrowser1)
+        Me.WebBrowserTabPage.Controls.Add(Me.ToolStrip1)
+        Me.WebBrowserTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.WebBrowserTabPage.Name = "WebBrowserTabPage"
+        Me.WebBrowserTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.WebBrowserTabPage.Size = New System.Drawing.Size(832, 343)
+        Me.WebBrowserTabPage.TabIndex = 0
+        Me.WebBrowserTabPage.Text = "Web Browser"
+        Me.WebBrowserTabPage.UseVisualStyleBackColor = True
         '
         'WebBrowser1
         '
@@ -122,7 +125,7 @@ Partial Class Form1
         Me.WebBrowser1.Location = New System.Drawing.Point(-4, 28)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.Size = New System.Drawing.Size(834, 416)
+        Me.WebBrowser1.Size = New System.Drawing.Size(834, 319)
         Me.WebBrowser1.TabIndex = 1
         Me.WebBrowser1.Url = New System.Uri("http://www.spigotmc.org", System.UriKind.Absolute)
         '
@@ -177,27 +180,19 @@ Partial Class Form1
         Me.ToolStripButton4.Size = New System.Drawing.Size(75, 22)
         Me.ToolStripButton4.Text = "Picket News"
         '
-        'TabPage2
+        'ServerTabPage
         '
-        Me.TabPage2.Controls.Add(Me.RichConsole1)
-        Me.TabPage2.Controls.Add(Me.Button1)
-        Me.TabPage2.Controls.Add(Me.TextBox1)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(832, 444)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Server"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(664, 8)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(148, 68)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Start"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.ServerTabPage.Controls.Add(Me.StatusLabel)
+        Me.ServerTabPage.Controls.Add(Me.Label1)
+        Me.ServerTabPage.Controls.Add(Me.IntegratedConsole1)
+        Me.ServerTabPage.Controls.Add(Me.TextBox1)
+        Me.ServerTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.ServerTabPage.Name = "ServerTabPage"
+        Me.ServerTabPage.Padding = New System.Windows.Forms.Padding(3)
+        Me.ServerTabPage.Size = New System.Drawing.Size(832, 343)
+        Me.ServerTabPage.TabIndex = 1
+        Me.ServerTabPage.Text = "Server"
+        Me.ServerTabPage.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
@@ -206,33 +201,77 @@ Partial Class Form1
         Me.TextBox1.Size = New System.Drawing.Size(569, 20)
         Me.TextBox1.TabIndex = 1
         '
-        'RichConsole1
+        'Button1
         '
-        Me.RichConsole1.Location = New System.Drawing.Point(3, 6)
-        Me.RichConsole1.Name = "RichConsole1"
-        Me.RichConsole1.Size = New System.Drawing.Size(565, 392)
-        Me.RichConsole1.TabIndex = 3
-        Me.RichConsole1.Text = ""
+        Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(331, 411)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(172, 68)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Start"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"ping localhost /n 5"})
+        Me.ComboBox1.Location = New System.Drawing.Point(4, 411)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(149, 21)
+        Me.ComboBox1.TabIndex = 3
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(661, 8)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(48, 16)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Status:"
+        '
+        'StatusLabel
+        '
+        Me.StatusLabel.AutoSize = True
+        Me.StatusLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.StatusLabel.ForeColor = System.Drawing.Color.Red
+        Me.StatusLabel.Location = New System.Drawing.Point(715, 8)
+        Me.StatusLabel.Name = "StatusLabel"
+        Me.StatusLabel.Size = New System.Drawing.Size(67, 16)
+        Me.StatusLabel.TabIndex = 5
+        Me.StatusLabel.Text = "Stopped"
+        '
+        'IntegratedConsole1
+        '
+        Me.IntegratedConsole1.BackColor = System.Drawing.Color.DimGray
+        Me.IntegratedConsole1.Location = New System.Drawing.Point(8, 8)
+        Me.IntegratedConsole1.Name = "IntegratedConsole1"
+        Me.IntegratedConsole1.Size = New System.Drawing.Size(647, 329)
+        Me.IntegratedConsole1.TabIndex = 3
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(834, 491)
-        Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.MainTabController)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Text = "Picket alpha 1.0.0"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.TabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
+        Me.MainTabController.ResumeLayout(False)
+        Me.WebBrowserTabPage.ResumeLayout(False)
+        Me.WebBrowserTabPage.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
+        Me.ServerTabPage.ResumeLayout(False)
+        Me.ServerTabPage.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -243,9 +282,9 @@ Partial Class Form1
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GithubToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CheckForUpdateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
-    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents MainTabController As System.Windows.Forms.TabControl
+    Friend WithEvents WebBrowserTabPage As System.Windows.Forms.TabPage
+    Friend WithEvents ServerTabPage As System.Windows.Forms.TabPage
     Friend WithEvents WebBrowser1 As System.Windows.Forms.WebBrowser
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
@@ -254,6 +293,9 @@ Partial Class Form1
     Friend WithEvents ToolStripButton4 As System.Windows.Forms.ToolStripButton
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents RichConsole1 As Picket.RichConsole
+    Friend WithEvents IntegratedConsole1 As Picket.IntegratedConsole
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents StatusLabel As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 
 End Class
