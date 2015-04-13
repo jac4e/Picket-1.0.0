@@ -1,22 +1,75 @@
 ﻿Imports System.Net
+Imports System.IO
+Imports System.ComponentModel
 
 Public Class Form1
+    Dim WithEvents downloader As New WebClient
+
+    Dim status As statuses = statuses.Stopped
+    Dim downloading As Boolean = False
+
+    Enum statuses As Integer
+        Installing = 1
+        Updating = 2
+        Running = 3
+        Stopped = 4
+    End Enum
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click ' Install Button
+        InstallHandler()
+        UpdateHandler()
+    End Sub
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click '' Update button
+        UpdateHandler()
+    End Sub
+
     Private Sub InstallHandler()
-        Dim Appdata As String = Environment.GetEnvironmentVariable("APPDATA")
+        status = statuses.Installing
+        Dim Appdata As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
         Dim buildtoolsURL As String = "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
-        Dim buildtoolsfileName As String = Appdata + "\spigot\BuildTools.jar"
-        My.Computer.Network.DownloadFile(buildtoolsURL, buildtoolsfileName, vbNullString, vbNullString, True, 5000, True)
+        Dim buildtoolsfileName As String = Appdata + "\Picket\spigot\BuildTools.jar"
+        downloading = True
+        downloader.DownloadFileAsync(New Uri(buildtoolsURL), buildtoolsfileName)
+        While downloading
+            Application.DoEvents()
+        End While
+        status = statuses.Stopped
     End Sub
-
     Private Sub UpdateHandler()
-        ' Warn User this requires git if the dont have it
-        ' Run a .sh file that runs BuildTools.jar in the intergrated console
+        status = statuses.Updating
+        If Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\Programs\Git\") = False Then
+            Dim result As Integer = MessageBox.Show("Git could not be found on your computer. Would you like to install it now?" + Environment.NewLine + "(17.1MB download, 256MB extracted)", "", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                Dim msysgitURL As String = "http://github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/Git-1.9.5-preview20150319.exe"
+                Dim msysgitDownloadLocation As String = Path.GetTempPath() + "\Picket\git\INSTALL.EXE"
+                downloading = True
+                downloader.DownloadFileAsync(New Uri(msysgitURL), msysgitDownloadLocation)
+                While downloading
+                    Application.DoEvents()
+                End While
+                MessageBox.Show("done")
+                Dim installer As Process = Process.Start(Path.GetTempPath + "\Picket\git\INSTALL.EXE", "/SILENT")
+            Else
+                MessageBox.Show("Your server will not be installed.")
+            End If
+        End If
+        status = statuses.Stopped
     End Sub
-
     Private Sub StartHandler()
         ' Combo Box could list each server avalible to run (CraftBukkit, Spigot, Bukkit)
         MainTabController.SelectTab(ServerTabPage)
         IntegratedConsole1.startConsole(ComboBox1.SelectedItem)
+    End Sub
+
+    Private Sub processProgressChange(sender As Object, e As DownloadProgressChangedEventArgs) Handles downloader.DownloadProgressChanged
+        If status = statuses.Installing Then
+            ProgressBar1.Value = e.ProgressPercentage
+        ElseIf status = statuses.Updating Then
+            ProgressBar1.Value = e.ProgressPercentage + 100
+        End If
+    End Sub
+    Private Sub processFinished(sender As Object, e As AsyncCompletedEventArgs) Handles downloader.DownloadFileCompleted
+        downloading = False
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
@@ -69,14 +122,5 @@ Public Class Form1
         StatusLabel.Text = "Stopped"
         StatusLabel.ForeColor = Color.Red
         ServerTabPage.Text = "Server"
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click ' Install Button
-        InstallHandler()
-        UpdateHandler()
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        UpdateHandler()
     End Sub
 End Class

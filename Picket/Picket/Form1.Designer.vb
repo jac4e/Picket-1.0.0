@@ -47,6 +47,8 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+        Me.ProgressBarLabel = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.MainTabController.SuspendLayout()
         Me.WebBrowserTabPage.SuspendLayout()
@@ -105,7 +107,7 @@ Partial Class Form1
         Me.MainTabController.Location = New System.Drawing.Point(0, 27)
         Me.MainTabController.Name = "MainTabController"
         Me.MainTabController.SelectedIndex = 0
-        Me.MainTabController.Size = New System.Drawing.Size(840, 369)
+        Me.MainTabController.Size = New System.Drawing.Size(840, 350)
         Me.MainTabController.TabIndex = 1
         '
         'WebBrowserTabPage
@@ -115,20 +117,18 @@ Partial Class Form1
         Me.WebBrowserTabPage.Location = New System.Drawing.Point(4, 22)
         Me.WebBrowserTabPage.Name = "WebBrowserTabPage"
         Me.WebBrowserTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.WebBrowserTabPage.Size = New System.Drawing.Size(832, 343)
+        Me.WebBrowserTabPage.Size = New System.Drawing.Size(832, 324)
         Me.WebBrowserTabPage.TabIndex = 0
         Me.WebBrowserTabPage.Text = "Web Browser"
         Me.WebBrowserTabPage.UseVisualStyleBackColor = True
         '
         'WebBrowser1
         '
-        Me.WebBrowser1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.WebBrowser1.Location = New System.Drawing.Point(-4, 28)
+        Me.WebBrowser1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.WebBrowser1.Location = New System.Drawing.Point(3, 20)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.Size = New System.Drawing.Size(834, 319)
+        Me.WebBrowser1.Size = New System.Drawing.Size(826, 301)
         Me.WebBrowser1.TabIndex = 1
         Me.WebBrowser1.Url = New System.Uri("http://www.spigotmc.org", System.UriKind.Absolute)
         '
@@ -190,7 +190,7 @@ Partial Class Form1
         Me.ServerTabPage.Location = New System.Drawing.Point(4, 22)
         Me.ServerTabPage.Name = "ServerTabPage"
         Me.ServerTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.ServerTabPage.Size = New System.Drawing.Size(832, 343)
+        Me.ServerTabPage.Size = New System.Drawing.Size(832, 324)
         Me.ServerTabPage.TabIndex = 1
         Me.ServerTabPage.Text = "Server"
         Me.ServerTabPage.UseVisualStyleBackColor = True
@@ -205,9 +205,10 @@ Partial Class Form1
         'IntegratedConsole1
         '
         Me.IntegratedConsole1.BackColor = System.Drawing.Color.DimGray
-        Me.IntegratedConsole1.Location = New System.Drawing.Point(8, 8)
+        Me.IntegratedConsole1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.IntegratedConsole1.Location = New System.Drawing.Point(3, 3)
         Me.IntegratedConsole1.Name = "IntegratedConsole1"
-        Me.IntegratedConsole1.Size = New System.Drawing.Size(647, 329)
+        Me.IntegratedConsole1.Size = New System.Drawing.Size(826, 318)
         Me.IntegratedConsole1.TabIndex = 3
         '
         'StatusLabel
@@ -215,7 +216,7 @@ Partial Class Form1
         Me.StatusLabel.AutoSize = True
         Me.StatusLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.StatusLabel.ForeColor = System.Drawing.Color.Red
-        Me.StatusLabel.Location = New System.Drawing.Point(590, 422)
+        Me.StatusLabel.Location = New System.Drawing.Point(596, 424)
         Me.StatusLabel.Name = "StatusLabel"
         Me.StatusLabel.Size = New System.Drawing.Size(67, 16)
         Me.StatusLabel.TabIndex = 5
@@ -225,7 +226,7 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(542, 422)
+        Me.Label1.Location = New System.Drawing.Point(542, 424)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(48, 16)
         Me.Label1.TabIndex = 4
@@ -236,7 +237,7 @@ Partial Class Form1
         Me.Button1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(364, 411)
+        Me.Button1.Location = New System.Drawing.Point(364, 424)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(172, 68)
         Me.Button1.TabIndex = 2
@@ -247,14 +248,14 @@ Partial Class Form1
         '
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"ping localhost /n 5"})
-        Me.ComboBox1.Location = New System.Drawing.Point(628, 449)
+        Me.ComboBox1.Location = New System.Drawing.Point(628, 454)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(149, 21)
         Me.ComboBox1.TabIndex = 3
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(12, 411)
+        Me.Button2.Location = New System.Drawing.Point(12, 424)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(170, 68)
         Me.Button2.TabIndex = 4
@@ -263,7 +264,7 @@ Partial Class Form1
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(188, 411)
+        Me.Button3.Location = New System.Drawing.Point(188, 424)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(170, 68)
         Me.Button3.TabIndex = 5
@@ -274,17 +275,37 @@ Partial Class Form1
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(542, 449)
+        Me.Label2.Location = New System.Drawing.Point(542, 454)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(80, 16)
         Me.Label2.TabIndex = 6
         Me.Label2.Text = "Server type:"
         '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(4, 379)
+        Me.ProgressBar1.Maximum = 200
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(829, 18)
+        Me.ProgressBar1.TabIndex = 7
+        '
+        'ProgressBarLabel
+        '
+        Me.ProgressBarLabel.AutoSize = True
+        Me.ProgressBarLabel.BackColor = System.Drawing.Color.Transparent
+        Me.ProgressBarLabel.Location = New System.Drawing.Point(1, 400)
+        Me.ProgressBarLabel.Name = "ProgressBarLabel"
+        Me.ProgressBarLabel.Size = New System.Drawing.Size(38, 13)
+        Me.ProgressBarLabel.TabIndex = 8
+        Me.ProgressBarLabel.Text = "Ready"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(834, 491)
+        Me.ClientSize = New System.Drawing.Size(834, 504)
+        Me.Controls.Add(Me.ProgressBarLabel)
+        Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.StatusLabel)
@@ -297,6 +318,7 @@ Partial Class Form1
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.Text = "Picket alpha 1.0.0"
+        Me.TransparencyKey = System.Drawing.Color.Maroon
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.MainTabController.ResumeLayout(False)
@@ -334,5 +356,7 @@ Partial Class Form1
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+    Friend WithEvents ProgressBarLabel As System.Windows.Forms.Label
 
 End Class
