@@ -1,4 +1,24 @@
-﻿Public Class Form1
+﻿Imports System.Net
+
+Public Class Form1
+    Private Sub InstallHandler()
+        Dim Appdata As String = Environment.GetEnvironmentVariable("APPDATA")
+        Dim buildtoolsURL As String = "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
+        Dim buildtoolsfileName As String = Appdata + "\spigot\BuildTools.jar"
+        My.Computer.Network.DownloadFile(buildtoolsURL, buildtoolsfileName, vbNullString, vbNullString, True, 5000, True)
+    End Sub
+
+    Private Sub UpdateHandler()
+        ' Warn User this requires git if the dont have it
+        ' Run a .sh file that runs BuildTools.jar in the intergrated console
+    End Sub
+
+    Private Sub StartHandler()
+        ' Combo Box could list each server avalible to run (CraftBukkit, Spigot, Bukkit)
+        MainTabController.SelectTab(ServerTabPage)
+        IntegratedConsole1.startConsole(ComboBox1.SelectedItem)
+    End Sub
+
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Me.Close()
     End Sub
@@ -8,7 +28,7 @@
     End Sub
 
     Private Sub CheckForUpdateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckForUpdateToolStripMenuItem.Click
-        ' Check for update
+        ' Check for picket update
         ' If update avalible, create pop up telling user
         ' If user clicks ok, check for UpdateTool.exe, download if not found
         ' Run UpdateTool.exe
@@ -32,8 +52,7 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        MainTabController.SelectTab(ServerTabPage)
-        IntegratedConsole1.startConsole(ComboBox1.SelectedItem)
+        StartHandler()
     End Sub
 
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
@@ -50,5 +69,14 @@
         StatusLabel.Text = "Stopped"
         StatusLabel.ForeColor = Color.Red
         ServerTabPage.Text = "Server"
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click ' Install Button
+        InstallHandler()
+        UpdateHandler()
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        UpdateHandler()
     End Sub
 End Class
