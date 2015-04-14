@@ -35,30 +35,52 @@ Public Class Form1
         End While
         status = statuses.Stopped
     End Sub
+    
+        Private Function getComputerBits() As Boolean ''If computer is 64-bit, return true. If it is 32-bit, return false.
+        If Environment.Is64BitOperatingSystem Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
     Private Sub UpdateHandler()
         status = statuses.Updating
-        If Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\Programs\Git\") = False Then
-            Dim result As Integer = MessageBox.Show("Git could not be found on your computer. Would you like to install it now?" + Environment.NewLine + "(17.1MB download, 256MB extracted)", "", MessageBoxButtons.YesNo)
-            If result = DialogResult.Yes Then
-                Dim msysgitURL As String = "http://github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/Git-1.9.5-preview20150319.exe"
-                Dim msysgitDownloadLocation As String = Path.GetTempPath() + "\Picket\git\INSTALL.EXE"
-                downloading = True
-                downloader.DownloadFileAsync(New Uri(msysgitURL), msysgitDownloadLocation)
-                While downloading
-                    Application.DoEvents()
-                End While
-                MessageBox.Show("done")
-                Dim installer As Process = Process.Start(Path.GetTempPath + "\Picket\git\INSTALL.EXE", "/SILENT")
-            Else
-                MessageBox.Show("Your server will not be installed.")
+        If (getComputerBits()) Then
+            If Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\Git\") = False Then
+                Dim result As Integer = MessageBox.Show("Git could not be found on your computer. Would you like to install it now?" + Environment.NewLine + "(17.1MB download, 256MB extracted)", "", MessageBoxButtons.YesNo)
+                If result = DialogResult.Yes Then
+                    Dim msysgitURL As String = "http://github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/Git-1.9.5-preview20150319.exe"
+                    Dim msysgitDownloadLocation As String = Path.GetTempPath() + "\Picket\git\INSTALL.EXE"
+                    downloading = True
+                    downloader.DownloadFileAsync(New Uri(msysgitURL), msysgitDownloadLocation)
+                    While downloading
+                        Application.DoEvents()
+                    End While
+                    MessageBox.Show("done")
+                    Dim installer As Process = Process.Start(Path.GetTempPath + "\Picket\git\INSTALL.EXE", "/SILENT")
+                Else
+                    MessageBox.Show("Your server will not be installed.")
+                End If
+            End If
+        Else
+            If Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\Git\") = False Then
+                Dim result As Integer = MessageBox.Show("Git could not be found on your computer. Would you like to install it now?" + Environment.NewLine + "(17.1MB download, 256MB extracted)", "", MessageBoxButtons.YesNo)
+                If result = DialogResult.Yes Then
+                    Dim msysgitURL As String = "http://github.com/msysgit/msysgit/releases/download/Git-1.9.5-preview20150319/Git-1.9.5-preview20150319.exe"
+                    Dim msysgitDownloadLocation As String = Path.GetTempPath() + "\Picket\git\INSTALL.EXE"
+                    downloading = True
+                    downloader.DownloadFileAsync(New Uri(msysgitURL), msysgitDownloadLocation)
+                    While downloading
+                        Application.DoEvents()
+                    End While
+                    MessageBox.Show("done")
+                    Dim installer As Process = Process.Start(Path.GetTempPath + "\Picket\git\INSTALL.EXE", "/SILENT")
+                Else
+                    MessageBox.Show("Your server will not be installed.")
+                End If
             End If
         End If
         status = statuses.Stopped
-    End Sub
-    Private Sub StartHandler()
-        ' Combo Box could list each server avalible to run (CraftBukkit, Spigot, Bukkit)
-        MainTabController.SelectTab(ServerTabPage)
-        IntegratedConsole1.startConsole(ComboBox1.SelectedItem)
     End Sub
 
     Private Sub processProgressChange(sender As Object, e As DownloadProgressChangedEventArgs) Handles downloader.DownloadProgressChanged
