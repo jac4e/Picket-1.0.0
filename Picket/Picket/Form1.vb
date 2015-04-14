@@ -82,6 +82,12 @@ Public Class Form1
         End If
         status = statuses.Stopped
     End Sub
+    
+    Private Sub StartHandler()
+    ' Combo Box could list each server avalible to run (CraftBukkit, Spigot, Bukkit)
+        MainTabController.SelectTab(ServerTabPage)
+        IntegratedConsole1.startConsole(ComboBox1.SelectedItem)
+    End Sub
 
     Private Sub processProgressChange(sender As Object, e As DownloadProgressChangedEventArgs) Handles downloader.DownloadProgressChanged
         If status = statuses.Installing Then
