@@ -56,7 +56,6 @@ Public Class Form1
                     While downloading
                         Application.DoEvents()
                     End While
-                    MessageBox.Show("done")
                     Dim installer As Process = Process.Start(Path.GetTempPath + "\Picket\git\INSTALL.EXE", "/SILENT")
                 Else
                     MessageBox.Show("Your server will not be installed.")
@@ -73,7 +72,6 @@ Public Class Form1
                     While downloading
                         Application.DoEvents()
                     End While
-                    MessageBox.Show("done")
                     Dim installer As Process = Process.Start(Path.GetTempPath + "\Picket\git\INSTALL.EXE", "/SILENT")
                 Else
                     MessageBox.Show("Your server will not be installed.")
