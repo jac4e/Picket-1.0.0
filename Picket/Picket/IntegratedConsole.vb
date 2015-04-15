@@ -18,6 +18,7 @@ Public Class IntegratedConsole
     Dim cmd As Process
 
     Dim WithEvents processWatcher As New BackgroundWorker
+    Dim WithEvents startupBw As New BackgroundWorker
 
     Dim textbox As New RichTextBox
     Dim startTime As String
@@ -40,22 +41,12 @@ Public Class IntegratedConsole
     Private Const WS_CAPTION As Integer = WS_BORDER Or WS_DLGFRAME
 
     Public Sub New()
-        processWatcher.WorkerSupportsCancellation = True
-        processWatcher.WorkerReportsProgress = True
+        ''wtee init has now been multithreaded! Yay!
+        startupBw.RunWorkerAsync()
         Me.Controls.Add(textbox)
         textbox.Size = New Size(Me.Height, Me.Width)
         textbox.Dock = DockStyle.Fill
         textbox.ReadOnly = True
-        ''Set up good ol' wtee
-        If Directory.Exists(Path.GetTempPath() + "\Picket\") = False Then
-            Directory.CreateDirectory(Path.GetTempPath() + "\Picket\")
-            Directory.CreateDirectory(Path.GetTempPath() + "\Picket\logs\")
-            Directory.CreateDirectory(Path.GetTempPath() + "\Picket\servers\")
-        End If
-        Dim extractPath As String = Path.GetTempPath() + "\Picket\wtee.exe"
-        Dim exeExtract As New FileStream(extractPath, FileMode.Create)
-        exeExtract.Write(My.Resources.wtee, 0, My.Resources.wtee.Length)
-        exeExtract.Dispose()
     End Sub
 
     ''' <summary>
@@ -109,5 +100,18 @@ Public Class IntegratedConsole
         Dim n As String = Environment.NewLine
         textbox.Text = "Server Log" + n + "Time Started: " + startTime + n + "Time Stopped: " + Now.ToString("d.M.yyyy H.m.s") + n + n + "START LOG" + n + File.ReadAllText(currentLog)
         RaiseEvent ServerStop(Me, New ServerEventArgs(currentLog, ServerEventArgs.alertType.serverStop))
+    End Sub
+
+    Private Sub startupMultithread(sender As Object, args As DoWorkEventArgs) Handles startupBw.DoWork
+        ''Set up good ol' wtee
+        If Directory.Exists(Path.GetTempPath() + "\Picket\") = False Then
+            Directory.CreateDirectory(Path.GetTempPath() + "\Picket\")
+            Directory.CreateDirectory(Path.GetTempPath() + "\Picket\logs\")
+            Directory.CreateDirectory(Path.GetTempPath() + "\Picket\servers\")
+        End If
+        Dim extractPath As String = Path.GetTempPath() + "\Picket\wtee.exe"
+        Dim exeExtract As New FileStream(extractPath, FileMode.Create)
+        exeExtract.Write(My.Resources.wtee, 0, My.Resources.wtee.Length)
+        exeExtract.Dispose()
     End Sub
 End Class
