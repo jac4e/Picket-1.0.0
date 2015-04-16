@@ -8,6 +8,8 @@ Public Class Form1
     Dim status As statuses = statuses.Stopped
     Dim downloading As Boolean = False
 
+    Public version As String = ""
+
     Enum statuses As Integer
         Installing = 1
         Updating = 2
@@ -136,6 +138,16 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         ComboBox1.SelectedIndex = 0
+        ''Update version number
+        If Application.ProductVersion.Split(".")(3) <> Convert.ToString(0) Then
+            ''4th digit of ProductVersion is populated, it's a pre-release. Format string as such.
+            version = Application.ProductVersion.Split(".")(0) + "." + Application.ProductVersion.Split(".")(1) + "." + Application.ProductVersion.Split(".")(2) + "-preR" + Application.ProductVersion.Split(".")(3)
+            Me.Text = Me.Text + " " + version
+        Else
+            ''4th digit is NOT populated, format as such.
+            version = Application.ProductVersion.Split(".")(0) + "." + Application.ProductVersion.Split(".")(1) + "." - Application.ProductVersion.Split(".")(2)
+            Me.Text = Me.Text + " " + version
+        End If
     End Sub
 
     Private Sub IntegratedConsole1_ServerStart(sender As System.Object, e As Picket.ServerEventArgs) Handles IntegratedConsole1.ServerStart

@@ -324,7 +324,7 @@ Partial Class Form1
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
-        Me.Text = "Picket alpha 1.0.0"
+        Me.Text = "Picket"
         Me.TransparencyKey = System.Drawing.Color.Maroon
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
