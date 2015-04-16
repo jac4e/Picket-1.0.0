@@ -31,14 +31,16 @@ Public Class Form1
         Dim buildtoolsURL As String = "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"
         Dim buildtoolsfileName As String = Appdata + "\Picket\spigot\BuildTools.jar"
         downloading = True
+        StatusLabel.Text = "Downloading"
+        StatusLabel.ForeColor = Color.Blue
         downloader.DownloadFileAsync(New Uri(buildtoolsURL), buildtoolsfileName)
         While downloading
             Application.DoEvents()
         End While
         status = statuses.Stopped
     End Sub
-    
-        Private Function getComputerBits() As Boolean ''If computer is 64-bit, return true. If it is 32-bit, return false.
+
+    Private Function getComputerBits() As Boolean ''If computer is 64-bit, return true. If it is 32-bit, return false.
         If Environment.Is64BitOperatingSystem Then
             Return True
         Else
@@ -55,6 +57,8 @@ Public Class Form1
                     Dim msysgitDownloadLocation As String = Path.GetTempPath() + "\Picket\git\INSTALL.EXE"
                     downloading = True
                     downloader.DownloadFileAsync(New Uri(msysgitURL), msysgitDownloadLocation)
+                    StatusLabel.Text = "Downloading"
+                    StatusLabel.ForeColor = Color.Blue
                     While downloading
                         Application.DoEvents()
                     End While
@@ -71,6 +75,8 @@ Public Class Form1
                     Dim msysgitDownloadLocation As String = Path.GetTempPath() + "\Picket\git\INSTALL.EXE"
                     downloading = True
                     downloader.DownloadFileAsync(New Uri(msysgitURL), msysgitDownloadLocation)
+                    StatusLabel.Text = "Downloading"
+                    StatusLabel.ForeColor = Color.Blue
                     While downloading
                         Application.DoEvents()
                     End While
@@ -82,9 +88,9 @@ Public Class Form1
         End If
         status = statuses.Stopped
     End Sub
-    
+
     Private Sub StartHandler()
-    ' Combo Box could list each server avalible to run (CraftBukkit, Spigot, Bukkit)
+        ' Combo Box could list each server avalible to run (CraftBukkit, Spigot, Bukkit)
         MainTabController.SelectTab(ServerTabPage)
         IntegratedConsole1.startConsole(ComboBox1.SelectedItem)
     End Sub
@@ -92,8 +98,10 @@ Public Class Form1
     Private Sub processProgressChange(sender As Object, e As DownloadProgressChangedEventArgs) Handles downloader.DownloadProgressChanged
         If status = statuses.Installing Then
             ProgressBar1.Value = e.ProgressPercentage
+            ProgressBarLabel.Text = "Downloading Spigot BuildTools... (" + e.ProgressPercentage.ToString + "%)"
         ElseIf status = statuses.Updating Then
             ProgressBar1.Value = e.ProgressPercentage + 100
+            ProgressBarLabel.Text = "Downloading Git... (" + e.ProgressPercentage.ToString + "%)"
         End If
     End Sub
     Private Sub processFinished(sender As Object, e As AsyncCompletedEventArgs) Handles downloader.DownloadFileCompleted
