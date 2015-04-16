@@ -2,6 +2,7 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ManifestCertificateThumbprint>A48C474D011BBA978900E6ED197119FAA3CAE91B</ManifestCertificateThumbprint>
+    <PublishUrl>..\Picket-1.0.0-rel\Releases\latest\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
