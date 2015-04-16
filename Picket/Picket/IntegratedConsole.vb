@@ -43,6 +43,7 @@ Public Class IntegratedConsole
     Public Sub New()
         ''wtee init has now been multithreaded! Yay!
         startupBw.RunWorkerAsync()
+        processWatcher.WorkerReportsProgress = True
         Me.Controls.Add(textbox)
         textbox.Size = New Size(Me.Height, Me.Width)
         textbox.Dock = DockStyle.Fill
